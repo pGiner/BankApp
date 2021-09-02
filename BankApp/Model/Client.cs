@@ -8,7 +8,7 @@ namespace BankApp.Model
     class Client : User
     {
         List<Account> accountList { get; set; }
-        public Client(string Name, string Username, SecureString Password, List<Account> AccountList)
+        public Client(String Name, String Username, String Password, List<Account> AccountList)
         {
             this.Name = Name;
             this.Username = Username;

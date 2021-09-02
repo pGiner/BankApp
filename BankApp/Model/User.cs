@@ -9,7 +9,7 @@ namespace BankApp
     {
         protected String Name { get; set; }
         protected String Username { get; set; }
-        protected SecureString Password { get; set; }
+        protected String Password { get; set; }
     }
 
     

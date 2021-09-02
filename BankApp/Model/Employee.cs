@@ -7,7 +7,7 @@ namespace BankApp
 {
     class Employee : User
     {
-        public Employee(String Name, String Username, SecureString Password)
+        public Employee(String Name, String Username, String Password)
         {
             this.Name = Name;
             this.Username = Username;

@@ -7,18 +7,19 @@ namespace BankApp.Services
 {
     class AccountService : IAccountable
     {
-        public AccountService(Account account)
+        NotificationService service = new NotificationService();
+
+        public void AddAcount(List<Account> accountList, Account account)
         {
+            accountList.Add(account);
+            service.AccountCreatedNotification(account);
 
         }
-        public void AddAcount()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void deleteAccount()
+        public void DeleteAccount(List<Account> accountList, Account account)
         {
-            throw new NotImplementedException();
+            accountList.Remove(account);
+            service.AccountDeletedNotification(account);
         }
     }
 }

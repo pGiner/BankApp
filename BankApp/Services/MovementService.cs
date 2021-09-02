@@ -8,24 +8,27 @@ namespace BankApp.Services
 {
     class MovementService : IClientable
     {
+
+        NotificationService service = new NotificationService();
         public void DepositMoney(Account account, decimal amount)
         {
+            
             account.Balance += amount;
-
-            // TODO: Implement notification service 
+            service.DepositNotification(account, amount);
         }
 
         public void RequestMoney(Account account, decimal amount, Account destinationAccount)
         {
-            // TODO: Implement a petition and wait
             if (destinationAccount.Balance >= amount)
             {
                 account.Balance += amount;
                 destinationAccount.Balance -= amount;
+                service.RequestNotification(account, destinationAccount, amount);
+                
             }
             else
             {
-                //error notification
+                service.ErrorNotification();
             }
             
         }
@@ -36,10 +39,11 @@ namespace BankApp.Services
             {
                 account.Balance -= amount;
                 destinationAccount.Balance += amount;
+                service.TransferCreatedNotification(account, destinationAccount, amount);
             }
             else
             {
-                //error notification
+                service.ErrorNotification();
             }
 
         }
@@ -49,10 +53,11 @@ namespace BankApp.Services
             if (account.Balance >= amount)
             {
                 account.Balance -= amount;
+                service.WithdrawNotification(account, amount);
             }
             else
             {
-                //error notification
+                service.ErrorNotification();
             }
 
         }
