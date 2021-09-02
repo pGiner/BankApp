@@ -5,10 +5,10 @@ using System.Text;
 
 namespace BankApp
 {
-    class Account : IAccountable
+    class Account
     {
-        protected String Iban { get; set; }
-        protected String Balance { get; set; }
+        public String Iban { get; set; }
+        public decimal Balance { get; set; }
 
         public Account(String Iban, String Balance)
         {
@@ -16,14 +16,5 @@ namespace BankApp
             this.Balance = Balance;
         }
 
-        public void AddAcount()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void deleteAccount()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
