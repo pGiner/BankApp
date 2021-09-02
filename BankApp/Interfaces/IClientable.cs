@@ -6,9 +6,9 @@ namespace BankApp.Interfaces
 {
     interface IClientable
     {
-        public void TransferMoney();
-        public void RequestMoney();
-        public void DepositMoney();
-        public void WithdrawMoney();
+        public void DepositMoney(Account account, decimal amount);
+        public void RequestMoney(Account account, decimal amount, Account destinationAccount);
+        public void TransferMoney(Account account, decimal amount, Account destinationAccount);
+        public void WithdrawMoney(Account account, decimal amount);
     }
 }

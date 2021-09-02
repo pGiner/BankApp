@@ -8,24 +8,53 @@ namespace BankApp.Services
 {
     class MovementService : IClientable
     {
-        public void DepositMoney()
+        public void DepositMoney(Account account, decimal amount)
         {
-            throw new NotImplementedException();
+            account.Balance += amount;
+
+            // TODO: Implement notification service 
         }
 
-        public void RequestMoney()
+        public void RequestMoney(Account account, decimal amount, Account destinationAccount)
         {
-            throw new NotImplementedException();
+            // TODO: Implement a petition and wait
+            if (destinationAccount.Balance >= amount)
+            {
+                account.Balance += amount;
+                destinationAccount.Balance -= amount;
+            }
+            else
+            {
+                //error notification
+            }
+            
         }
 
-        public void TransferMoney()
+        public void TransferMoney(Account account, decimal amount, Account destinationAccount)
         {
-            throw new NotImplementedException();
+            if (account.Balance >= amount)
+            {
+                account.Balance -= amount;
+                destinationAccount.Balance += amount;
+            }
+            else
+            {
+                //error notification
+            }
+
         }
 
-        public void WithdrawMoney()
+        public void WithdrawMoney(Account account, decimal amount)
         {
-            throw new NotImplementedException();
+            if (account.Balance >= amount)
+            {
+                account.Balance -= amount;
+            }
+            else
+            {
+                //error notification
+            }
+
         }
     }
 }

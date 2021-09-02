@@ -10,7 +10,7 @@ namespace BankApp
         public String Iban { get; set; }
         public decimal Balance { get; set; }
 
-        public Account(String Iban, String Balance)
+        public Account(String Iban, decimal Balance)
         {
             this.Iban = Iban;
             this.Balance = Balance;
