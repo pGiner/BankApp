@@ -13,12 +13,12 @@ namespace BankApp
             Account destinationAccount = new Account("5678", 100);
             List<Account> AccountList = new List<Account>();
 
-            Client client = new Client("Pablo Giner", "pGiner","1234", AccountList);
+            Client client = new Client("Pablo", "pGiner","1234", AccountList);
 
-            AccountService accountService = new AccountService();
+            
             MovementService movementService = new MovementService();
 
-            accountService.AddAcount(AccountList, account);
+            client.AddAcount(AccountList, account);
 
             movementService.DepositMoney(account, 20);
 
@@ -27,6 +27,8 @@ namespace BankApp
             movementService.TransferMoney(account, 40, destinationAccount);
 
             movementService.WithdrawMoney(account, 10);
+
+            client.DeleteAccount(AccountList, account);
         }
     }
 }

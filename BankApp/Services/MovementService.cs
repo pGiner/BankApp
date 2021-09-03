@@ -6,15 +6,14 @@ using System.Text;
 
 namespace BankApp.Services
 {
-    class MovementService : IClientable
+    class MovementService : IAccountable
     {
 
         NotificationService service = new NotificationService();
         public void DepositMoney(Account account, decimal amount)
         {
-            
             account.Balance += amount;
-            service.DepositNotification(account, amount);
+            service.Notification($"{amount} deposited in the account {account.Iban}, your balance is {account.Balance}");
         }
 
         public void RequestMoney(Account account, decimal amount, Account destinationAccount)
@@ -23,12 +22,12 @@ namespace BankApp.Services
             {
                 account.Balance += amount;
                 destinationAccount.Balance -= amount;
-                service.RequestNotification(account, destinationAccount, amount);
+                service.Notification($"{amount} requested to {destinationAccount.Iban}");
                 
             }
             else
             {
-                service.ErrorNotification();
+                service.Notification($"Error, not enough money in account nº {destinationAccount.Iban}");
             }
             
         }
@@ -39,11 +38,11 @@ namespace BankApp.Services
             {
                 account.Balance -= amount;
                 destinationAccount.Balance += amount;
-                service.TransferCreatedNotification(account, destinationAccount, amount);
+                service.Notification($"{amount} transfered to account nº {destinationAccount.Iban}, your balance is {account.Balance}");
             }
             else
             {
-                service.ErrorNotification();
+                service.Notification($"Error, not enough money in account nº {account.Balance}");
             }
 
         }
@@ -53,11 +52,11 @@ namespace BankApp.Services
             if (account.Balance >= amount)
             {
                 account.Balance -= amount;
-                service.WithdrawNotification(account, amount);
+                service.Notification($"{amount} withdrawed from your account, your balance is {account.Balance}");
             }
             else
             {
-                service.ErrorNotification();
+                service.Notification($"Error, not enough money in account nº {account.Iban}");
             }
 
         }
